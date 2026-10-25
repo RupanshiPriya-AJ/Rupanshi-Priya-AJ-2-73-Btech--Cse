@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rupanshi Priya | B.Tech CSE Developer Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyan: {
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                             glowing: '#00f2fe'
+                        },
+                        violet: {
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            glowing: '#4facfe'
+                        },
+                        darkbg: '#0a0f1d',
+                        cardbg: 'rgba(15, 23, 42, 0.65)'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #060913;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Styles */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .glass-nav {
+            background: rgba(10, 15, 29, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card {
+            background: rgba(17, 24, 39, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(34, 211, 238, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px -10px rgba(34, 211, 238, 0.25);
+        }
+
+        /* Glowing accents */
+        .text-glow-cyan {
+            text-shadow: 0 0 15px rgba(34, 211, 238, 0.6);
+        }
+
+        .text-glow-violet {
+            text-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
+        }
+
+        .glow-btn-cyan {
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.35);
+        }
+
+        .glow-btn-cyan:hover {
+            box-shadow: 0 0 30px rgba(34, 211, 238, 0.6);
+        }
+
+        /* Background Particle Canvas */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #060913;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06b6d4;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen text-slate-100 selection:bg-cyan-500 selection:text-slate-900">
+
+    <!-- Dynamic Particle Network Canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center space-x-2 group">
+                    <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-violet-600 flex items-center justify-center text-slate-900 font-extrabold text-xl shadow-lg transform group-hover:rotate-6 transition-transform">RP</span>
+                    <span class="text-xl font-bold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-300 to-violet-400">RUPANSHI PRIYA</span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex space-x-1">
+                    <a href="#home" class="px-4 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 transition">Home</a>
+                    <a href="#about" class="px-4 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 transition">About</a>
+                    <a href="#skills" class="px-4 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 transition">Skills</a>
+                    <a href="#projects" class="px-4 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 transition">Projects</a>
+                    <a href="#experience" class="px-4 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 transition">Experience</a>
+                    <a href="#contact" class="px-4 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 transition">Contact</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden md:flex items-center">
+                    <a href="#contact" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-cyan-500 to-violet-600 text-white font-medium text-sm hover:opacity-90 transition glow-btn-cyan flex items-center gap-2">
+                        <span>Get In Touch</span>
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-slate-800 px-4 pt-2 pb-6 space-y-2">
+            <a href="#home" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">Home</a>
+            <a href="#about" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">About</a>
+            <a href="#skills" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">Skills</a>
+            <a href="#projects" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">Projects</a>
+            <a href="#experience" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">Experience</a>
+            <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-400">Contact</a>
+        </div>
+    </header>
+
+    <!-- Main Body Container -->
+    <main class="relative z-10 pt-20">
+
+        <!-- 1. HERO SECTION -->
+        <section id="home" class="min-h-screen flex items-center justify-center relative py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Hero Text Content -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-cyan-500/30 text-cyan-400 text-sm font-medium">
+                            <span class="relative flex h-2.5 w-2.5">
+                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-500"></span>
+                            </span>
+                            Available for Internships & Projects
+                        </div>
+
+                        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight">
+                            Hi, I'm <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-300 to-violet-400 text-glow-cyan">Rupanshi Priya</span>
+                        </h1>
+
+                        <div class="text-xl sm:text-2xl font-semibold text-slate-300 h-10 flex items-center justify-center lg:justify-start">
+                            <span>I am a&nbsp;</span>
+                            <span id="typing-text" class="text-cyan-400 border-b-2 border-cyan-400"></span>
+                        </div>
+
+                        <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                            Passionate B.Tech Computer Science & Engineering student building modern full-stack web applications, solving algorithm challenges, and crafting seamless interactive experiences.
+                        </p>
+
+                        <!-- Call to Action Buttons -->
+                        <div class="flex flex-wrap gap-4 justify-center lg:justify-start pt-4">
+                            <a href="#projects" class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-cyan-600 text-slate-900 font-bold hover:brightness-110 transition flex items-center gap-2 glow-btn-cyan">
+                                <span>View Projects</span>
+                                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                            </a>
+                            <a href="#contact" class="px-7 py-3.5 rounded-xl glass-panel text-cyan-400 font-semibold border border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-500/10 transition flex items-center gap-2">
+                                <span>Contact Me</span>
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </a>
+                            <a href="javascript:void(0)" onclick="downloadResumeSim()" class="px-7 py-3.5 rounded-xl glass-panel text-slate-300 font-semibold border border-slate-700 hover:border-slate-500 transition flex items-center gap-2">
+                                <i data-lucide="download" class="w-5 h-5"></i>
+                                <span>Resume</span>
+                            </a>
+                        </div>
+
+                        <!-- Social Icons -->
+                        <div class="pt-6 flex items-center justify-center lg:justify-start gap-4">
+                            <a href="https://github.com/rupanshi-priya" target="_blank" class="p-3 rounded-xl glass-panel text-slate-400 hover:text-cyan-400 hover:border-cyan-500/50 transition">
+                                <i data-lucide="github" class="w-6 h-6"></i>
+                            </a>
+                            <a href="https://linkedin.com" target="_blank" class="p-3 rounded-xl glass-panel text-slate-400 hover:text-cyan-400 hover:border-cyan-500/50 transition">
+                                <i data-lucide="linkedin" class="w-6 h-6"></i>
+                            </a>
+                            <a href="https://wa.me/917557752854" target="_blank" class="p-3 rounded-xl glass-panel text-slate-400 hover:text-cyan-400 hover:border-cyan-500/50 transition" title="WhatsApp">
+                                <i data-lucide="message-circle" class="w-6 h-6"></i>
+                            </a>
+                            <a href="mailto:rupanshipriya23@gmail.com" class="p-3 rounded-xl glass-panel text-slate-400 hover:text-cyan-400 hover:border-cyan-500/50 transition" title="Email">
+                                <i data-lucide="mail" class="w-6 h-6"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Avatar / Visual Graphic -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative w-72 h-72 sm:w-96 sm:h-96">
+                            <!-- Outer Ambient Glow Circles -->
+                            <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-500/30 to-violet-600/30 blur-3xl animate-pulse"></div>
+                            
+                            <!-- Main Cyber Graphic Box -->
+                            <div class="relative w-full h-full glass-panel rounded-3xl border border-white/10 p-6 flex flex-col justify-between overflow-hidden group">
+                                <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                                    <div class="flex space-x-2">
+                                        <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                        <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                                        <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                                    </div>
+                                    <span class="text-xs font-mono text-slate-500">rupanshi@developer:~</span>
+                                </div>
+                                
+                                <div class="font-mono text-xs sm:text-sm text-slate-300 space-y-2 my-auto">
+                                    <p><span class="text-cyan-400">const</span> developer = {</p>
+                                    <p class="pl-4">name: <span class="text-emerald-400">'Rupanshi Priya'</span>,</p>
+                                    <p class="pl-4">degree: <span class="text-emerald-400">'B.Tech CSE'</span>,</p>
+                                    <p class="pl-4">status: <span class="text-emerald-400">'Coding & Innovating'</span>,</p>
+                                    <p class="pl-4">skills: [<span class="text-violet-400">'React'</span>, <span class="text-violet-400">'Node'</span>, <span class="text-violet-400">'C++'</span>, <span class="text-violet-400">'SQL'</span>]</p>
+                                    <p>};</p>
+                                    <p class="text-slate-500 pt-2">// Ready to solve complex tech problems</p>
+                                </div>
+
+                                <div class="pt-3 border-t border-slate-800 flex justify-between items-center text-xs text-slate-400">
+                                    <span class="flex items-center gap-1 text-emerald-400"><i data-lucide="terminal" class="w-4 h-4"></i> Ready</span>
+                                    <span>UTF-8</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. ABOUT ME SECTION -->
+        <section id="about" class="py-24 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-sm font-semibold tracking-wider text-cyan-400 uppercase">Discover</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold text-white mt-2">About Me</p>
+                    <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-violet-600 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <!-- Bio Narrative -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="glass-panel p-8 rounded-2xl border border-white/5 space-y-4">
+                            <h3 class="text-2xl font-bold text-slate-100 flex items-center gap-2">
+                                <i data-lucide="code" class="text-cyan-400"></i>
+                                Computer Science Engineer & Web Developer
+                            </h3>
+                            <p class="text-slate-300 leading-relaxed">
+                                Hello! I'm <strong class="text-cyan-400">Rupanshi Priya</strong>, a Computer Science & Engineering undergraduate passionate about software engineering, web architectures, and clean code principles.
+                            </p>
+                            <p class="text-slate-400 leading-relaxed">
+                                My journey revolves around understanding core computing concepts—from Data Structures & Algorithms to Modern Full-Stack Web Development. I thrive in translating ideas into fast, responsive, and functional digital products.
+                            </p>
+                            <div class="pt-4 grid grid-cols-2 gap-4 text-sm text-slate-300 border-t border-slate-800">
+                                <div><span class="text-slate-500">Degree:</span> B.Tech Computer Science</div>
+                                <div><span class="text-slate-500">Focus:</span> Web & Algorithm Design</div>
+                                <div><span class="text-slate-500">Location:</span> India</div>
+                                <div><span class="text-slate-500">Status:</span> Open to Opportunities</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Stats Cards Grid -->
+                    <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+                        <div class="glass-card p-6 rounded-2xl text-center">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mx-auto mb-3">
+                                <i data-lucide="folder-git-2" class="w-6 h-6"></i>
+                            </div>
+                            <h4 class="text-3xl font-extrabold text-white">15+</h4>
+                            <p class="text-slate-400 text-sm mt-1">Projects Built</p>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl text-center">
+                            <div class="w-12 h-12 rounded-xl bg-violet-500/10 text-violet-400 flex items-center justify-center mx-auto mb-3">
+                                <i data-lucide="cpu" class="w-6 h-6"></i>
+                            </div>
+                            <h4 class="text-3xl font-extrabold text-white">250+</h4>
+                            <p class="text-slate-400 text-sm mt-1">DSA Problems</p>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl text-center">
+                            <div class="w-12 h-12 rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center mx-auto mb-3">
+                                <i data-lucide="award" class="w-6 h-6"></i>
+                            </div>
+                            <h4 class="text-3xl font-extrabold text-white">8.2+</h4>
+                            <p class="text-slate-400 text-sm mt-1">Academic CGPA</p>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl text-center">
+                            <div class="w-12 h-12 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center mx-auto mb-3">
+                                <i data-lucide="layers" class="w-6 h-6"></i>
+                            </div>
+                            <h4 class="text-3xl font-extrabold text-white">8+</h4>
+                            <p class="text-slate-400 text-sm mt-1">Tech Stacks</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SKILLS SECTION -->
+        <section id="skills" class="py-24 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-sm font-semibold tracking-wider text-cyan-400 uppercase">Capabilities</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Technical Skills</p>
+                    <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-violet-600 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Web Development -->
+                    <div class="glass-panel p-6 rounded-2xl space-y-6">
+                        <div class="flex items-center gap-3 border-b border-slate-800 pb-4">
+                            <div class="p-3 rounded-xl bg-cyan-500/10 text-cyan-400">
+                                <i data-lucide="layout" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-100">Web Development</h3>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-slate-300 font-medium">HTML5 & CSS3</span>
+                                    <span class="text-cyan-400 font-mono">90%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                    <div class="h-full bg-cyan-400 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-slate-300 font-medium">JavaScript (ES6+)</span>
+                                    <span class="text-cyan-400 font-mono">85%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                    <div class="h-full bg-cyan-400 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-slate-300 font-medium">React.js</span>
+                                    <span class="text-cyan-400 font-mono">78%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                    <div class="h-full bg-cyan-400 rounded-full" style="width: 78%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-slate-300 font-medium">Node.js / Express</span>
+                                    <span class="text-cyan-400 font-mono">75%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                    <div class="h-full bg-cyan-400 rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-slate-300 font-medium">Tailwind CSS / Bootstrap</span>
+                                    <span class="text-cyan-400 font-mono">88%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                    <div class="h-full bg-cyan-400 rounded-full" style="width: 88%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Programming & Core -->
+                    <div class="glass-panel p-6 rounded-2xl space-y-6">
+                        <div class="flex items-center gap-3 border-b border-slate-800 pb-4">
+                            <div class="p-3 rounded-xl bg-violet-500/10 text-violet-400">
+                                <i data-lucide="binary" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-100">Programming Languages</h3>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-slate-300 font-medium">C / C++</span>
+                                    <span class="text-violet-400 font-mono">85%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                    <div class="h-full bg-violet-500 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-slate-300 font-medium">Python</span>
+                                    <span class="text-violet-400 font-mono">80%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                    <div class="h-full bg-violet-500 rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-slate-300 font-medium">Java</span>
+                                    <span class="text-violet-400 font-mono">72%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                    <div class="h-full bg-violet-500 rounded-full" style="width: 72%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-slate-300 font-medium">SQL & Relational DB</span>
+                                    <span class="text-violet-400 font-mono">80%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                    <div class="h-full bg-violet-500 rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tools & Technologies -->
+                    <div class="glass-panel p-6 rounded-2xl space-y-6">
+                        <div class="flex items-center gap-3 border-b border-slate-800 pb-4">
+                            <div class="p-3 rounded-xl bg-teal-500/10 text-teal-400">
+                                <i data-lucide="terminal" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-100">Tools & Environments</h3>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-slate-300 font-medium">Git & GitHub</span>
+                                    <span class="text-teal-400 font-mono">88%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                    <div class="h-full bg-teal-400 rounded-full" style="width: 88%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-slate-300 font-medium">VS Code / IDEs</span>
+                                    <span class="text-teal-400 font-mono">92%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                    <div class="h-full bg-teal-400 rounded-full" style="width: 92%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-slate-300 font-medium">Linux Basics / Command Line</span>
+                                    <span class="text-teal-400 font-mono">75%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                    <div class="h-full bg-teal-400 rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-slate-300 font-medium">Postman & APIs</span>
+                                    <span class="text-teal-400 font-mono">82%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                    <div class="h-full bg-teal-400 rounded-full" style="width: 82%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. PROJECTS SECTION -->
+        <section id="projects" class="py-24 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-sm font-semibold tracking-wider text-cyan-400 uppercase">Portfolio</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Featured Projects</p>
+                    <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-violet-600 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <!-- Filter Tags -->
+                <div class="flex flex-wrap items-center justify-center gap-2 mb-12">
+                    <button onclick="filterProjects('all')" class="project-filter-btn active px-5 py-2 rounded-full text-sm font-semibold glass-panel border border-cyan-500/50 text-cyan-400 transition">All Projects</button>
+                    <button onclick="filterProjects('webapp')" class="project-filter-btn px-5 py-2 rounded-full text-sm font-semibold glass-panel border border-slate-700 text-slate-400 hover:text-white transition">Web Apps</button>
+                    <button onclick="filterProjects('utility')" class="project-filter-btn px-5 py-2 rounded-full text-sm font-semibold glass-panel border border-slate-700 text-slate-400 hover:text-white transition">Utilities</button>
+                    <button onclick="filterProjects('fun')" class="project-filter-btn px-5 py-2 rounded-full text-sm font-semibold glass-panel border border-slate-700 text-slate-400 hover:text-white transition">Fun / Tools</button>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8" id="projects-container">
+                    
+                    <!-- Project 1: Payment Gateway Portal -->
+                    <div class="project-card glass-card rounded-2xl overflow-hidden border border-white/5 flex flex-col" data-category="webapp">
+                        <div class="h-48 bg-gradient-to-br from-cyan-900/40 to-slate-900 p-6 flex flex-col justify-between relative border-b border-slate-800">
+                            <div class="flex items-center justify-between">
+                                <span class="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 text-xs font-mono border border-cyan-500/30">Web App</span>
+                                <div class="flex gap-2">
+                                    <a href="#" class="p-2 rounded-lg bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-cyan-400 transition" title="Code"><i data-lucide="github" class="w-4 h-4"></i></a>
+                                    <a href="#" class="p-2 rounded-lg bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-cyan-400 transition" title="Live Demo"><i data-lucide="external-link" class="w-4 h-4"></i></a>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="p-3 rounded-xl bg-cyan-500/20 text-cyan-400">
+                                    <i data-lucide="credit-card" class="w-8 h-8"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white">Payment Gateway Simulator</h3>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                A simulated full-stack transaction checkout experience supporting card validation, transaction history logs, and instant receipt generation with responsive web view.
+                            </p>
+                            <div class="flex flex-wrap gap-2 pt-2">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">HTML/CSS</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">JavaScript</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">Bootstrap</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Attendance Calculator -->
+                    <div class="project-card glass-card rounded-2xl overflow-hidden border border-white/5 flex flex-col" data-category="utility">
+                        <div class="h-48 bg-gradient-to-br from-violet-900/40 to-slate-900 p-6 flex flex-col justify-between relative border-b border-slate-800">
+                            <div class="flex items-center justify-between">
+                                <span class="px-3 py-1 rounded-full bg-violet-500/20 text-violet-400 text-xs font-mono border border-violet-500/30">Utility</span>
+                                <div class="flex gap-2">
+                                    <a href="#" class="p-2 rounded-lg bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-violet-400 transition" title="Code"><i data-lucide="github" class="w-4 h-4"></i></a>
+                                    <a href="#" class="p-2 rounded-lg bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-violet-400 transition" title="Live Demo"><i data-lucide="external-link" class="w-4 h-4"></i></a>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="p-3 rounded-xl bg-violet-500/20 text-violet-400">
+                                    <i data-lucide="calculator" class="w-8 h-8"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white">College Attendance Tracker</h3>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Smart attendance tracker application allowing university students to calculate target percentages, calculate bunk safety, and manage subjectwise records.
+                            </p>
+                            <div class="flex flex-wrap gap-2 pt-2">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">React</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">Tailwind CSS</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">LocalStorage</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Digital Productivity Tools -->
+                    <div class="project-card glass-card rounded-2xl overflow-hidden border border-white/5 flex flex-col" data-category="fun">
+                        <div class="h-48 bg-gradient-to-br from-teal-900/40 to-slate-900 p-6 flex flex-col justify-between relative border-b border-slate-800">
+                            <div class="flex items-center justify-between">
+                                <span class="px-3 py-1 rounded-full bg-teal-500/20 text-teal-400 text-xs font-mono border border-teal-500/30">Fun / Tool</span>
+                                <div class="flex gap-2">
+                                    <a href="#" class="p-2 rounded-lg bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-teal-400 transition" title="Code"><i data-lucide="github" class="w-4 h-4"></i></a>
+                                    <a href="#" class="p-2 rounded-lg bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-teal-400 transition" title="Live Demo"><i data-lucide="external-link" class="w-4 h-4"></i></a>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="p-3 rounded-xl bg-teal-500/20 text-teal-400">
+                                    <i data-lucide="clock" class="w-8 h-8"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white">Digital Clock & Focus Dashboard</h3>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Aesthetic dark dashboard containing a real-time digital clock, Pomodoro timer, dynamic background themes, and a minimal task manager.
+                            </p>
+                            <div class="flex flex-wrap gap-2 pt-2">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">JavaScript</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">CSS Animation</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">Audio Web API</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: AI Code Compiler Interface -->
+                    <div class="project-card glass-card rounded-2xl overflow-hidden border border-white/5 flex flex-col" data-category="webapp">
+                        <div class="h-48 bg-gradient-to-br from-blue-900/40 to-slate-900 p-6 flex flex-col justify-between relative border-b border-slate-800">
+                            <div class="flex items-center justify-between">
+                                <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-xs font-mono border border-blue-500/30">Web App</span>
+                                <div class="flex gap-2">
+                                    <a href="#" class="p-2 rounded-lg bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-blue-400 transition" title="Code"><i data-lucide="github" class="w-4 h-4"></i></a>
+                                    <a href="#" class="p-2 rounded-lg bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-blue-400 transition" title="Live Demo"><i data-lucide="external-link" class="w-4 h-4"></i></a>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="p-3 rounded-xl bg-blue-500/20 text-blue-400">
+                                    <i data-lucide="code-2" class="w-8 h-8"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white">Online Code Snippet Compiler</h3>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Browser-based code runner GUI for C++, JavaScript, and Python with dynamic syntax highlighting, custom inputs, and quick output panel.
+                            </p>
+                            <div class="flex flex-wrap gap-2 pt-2">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">Node.js</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">Monaco Editor</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs">Express API</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. EXPERIENCE & EDUCATION SECTION -->
+        <section id="experience" class="py-24 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-sm font-semibold tracking-wider text-cyan-400 uppercase">My Journey</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Education & Experience</p>
+                    <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-violet-600 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <!-- Timeline Container -->
+                <div class="max-w-4xl mx-auto relative border-l-2 border-slate-800 pl-6 sm:pl-10 space-y-12">
+                    
+                    <!-- Item 1: B.Tech Degree -->
+                    <div class="relative group">
+                        <!-- Bullet Dot -->
+                        <div class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-6 h-6 rounded-full bg-slate-900 border-2 border-cyan-400 flex items-center justify-center group-hover:bg-cyan-400 transition">
+                            <div class="w-2 h-2 rounded-full bg-cyan-400 group-hover:bg-slate-900"></div>
+                        </div>
+
+                        <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-white/5 space-y-3">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-semibold">2022 - 2026 (Expected)</span>
+                                <span class="text-xs text-slate-500 flex items-center gap-1"><i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Computer Science Dept</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">B.Tech in Computer Science & Engineering</h3>
+                            <p class="text-slate-400 text-sm">Relevant Coursework: Data Structures & Algorithms, Object-Oriented Programming, Database Management Systems, Operating Systems, Computer Networks.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2: Certifications / Training -->
+                    <div class="relative group">
+                        <!-- Bullet Dot -->
+                        <div class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-6 h-6 rounded-full bg-slate-900 border-2 border-violet-400 flex items-center justify-center group-hover:bg-violet-400 transition">
+                            <div class="w-2 h-2 rounded-full bg-violet-400 group-hover:bg-slate-900"></div>
+                        </div>
+
+                        <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-white/5 space-y-3">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <span class="px-3 py-1 rounded-full bg-violet-500/10 text-violet-400 text-xs font-semibold">2023 - 2024</span>
+                                <span class="text-xs text-slate-500 flex items-center gap-1"><i data-lucide="award" class="w-3.5 h-3.5"></i> Certification</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Full-Stack Web Development Bootcamp</h3>
+                            <p class="text-slate-400 text-sm">Mastered frontend modern standards (ES6+, React), REST API development with Node.js/Express, version control workflows with Git, and database modeling.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3: Independent Projects & Hackathons -->
+                    <div class="relative group">
+                        <!-- Bullet Dot -->
+                        <div class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-6 h-6 rounded-full bg-slate-900 border-2 border-teal-400 flex items-center justify-center group-hover:bg-teal-400 transition">
+                            <div class="w-2 h-2 rounded-full bg-teal-400 group-hover:bg-slate-900"></div>
+                        </div>
+
+                        <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-white/5 space-y-3">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <span class="px-3 py-1 rounded-full bg-teal-500/10 text-teal-400 text-xs font-semibold">2023 - Present</span>
+                                <span class="text-xs text-slate-500 flex items-center gap-1"><i data-lucide="code" class="w-3.5 h-3.5"></i> Open Source</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Open Source & Hackathon Participant</h3>
+                            <p class="text-slate-400 text-sm">Collaborated in university tech fests and online developer communities building rapid open-source solutions and web utility extensions.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. CONTACT SECTION -->
+        <section id="contact" class="py-24 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-sm font-semibold tracking-wider text-cyan-400 uppercase">Connect</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Get In Touch</p>
+                    <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-violet-600 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <!-- Left Info Cards -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <a href="mailto:rupanshipriya23@gmail.com" class="glass-panel p-6 rounded-2xl flex items-center gap-4 border border-white/5 hover:border-cyan-500/40 transition block">
+                            <div class="p-4 rounded-xl bg-cyan-500/10 text-cyan-400">
+                                <i data-lucide="mail" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-slate-400">Email Me</h4>
+                                <p class="text-white font-medium">rupanshipriya23@gmail.com</p>
+                            </div>
+                        </a>
+
+                        <a href="https://wa.me/917557752854" target="_blank" class="glass-panel p-6 rounded-2xl flex items-center gap-4 border border-white/5 hover:border-violet-500/40 transition block">
+                            <div class="p-4 rounded-xl bg-violet-500/10 text-violet-400">
+                                <i data-lucide="phone" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-slate-400">Phone / WhatsApp</h4>
+                                <p class="text-white font-medium">+91 7557752854</p>
+                            </div>
+                        </a>
+
+                        <div class="glass-panel p-6 rounded-2xl flex items-center gap-4">
+                            <div class="p-4 rounded-xl bg-teal-500/10 text-teal-400">
+                                <i data-lucide="map-pin" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-slate-400">Location</h4>
+                                <p class="text-white font-medium">India</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Form -->
+                    <div class="lg:col-span-7">
+                        <div class="glass-panel p-8 rounded-2xl border border-white/10">
+                            <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-6">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-sm font-medium text-slate-300 mb-2">Your Name</label>
+                                        <input type="text" required placeholder="John Doe" class="w-full px-4 py-3 rounded-xl bg-slate-900/60 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-slate-300 mb-2">Your Email</label>
+                                        <input type="email" required placeholder="john@example.com" class="w-full px-4 py-3 rounded-xl bg-slate-900/60 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-300 mb-2">Subject</label>
+                                    <input type="text" required placeholder="Project Inquiry / Internship Opportunity" class="w-full px-4 py-3 rounded-xl bg-slate-900/60 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-300 mb-2">Message</label>
+                                    <textarea rows="4" required placeholder="Hi Rupanshi, I would like to talk about..." class="w-full px-4 py-3 rounded-xl bg-slate-900/60 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition resize-none"></textarea>
+                                </div>
+                                <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-600 text-white font-bold hover:opacity-90 transition glow-btn-cyan flex items-center justify-center gap-2">
+                                    <span>Send Message</span>
+                                    <i data-lucide="send" class="w-5 h-5"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 glass-panel border-t border-slate-800 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-slate-400 text-sm">
+            <p>© <span id="year"></span> Rupanshi Priya. Designed & Engineered with passion.</p>
+            <div class="flex items-center space-x-4">
+                <a href="https://github.com/rupanshi-priya" target="_blank" class="hover:text-cyan-400 transition">GitHub</a>
+                <a href="#" class="hover:text-cyan-400 transition">LinkedIn</a>
+                <a href="#home" class="hover:text-cyan-400 transition">Back to top ↑</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Instant Toast Notification Container -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-32 opacity-0 transition-all duration-300 glass-panel border border-cyan-500/50 p-4 rounded-xl flex items-center gap-3 shadow-2xl">
+        <div class="p-2 rounded-lg bg-cyan-500/20 text-cyan-400">
+            <i data-lucide="check-circle" class="w-6 h-6"></i>
+        </div>
+        <div>
+            <h4 class="font-bold text-white text-sm">Message Sent!</h4>
+            <p class="text-xs text-slate-400">Thanks for reaching out, Rupanshi will get back to you soon.</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Dynamic Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Particle Network Node Background Animation
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initParticles();
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.8;
+                this.vy = (Math.random() - 0.5) * 0.8;
+                this.radius = Math.random() * 2 + 1;
+                this.color = Math.random() > 0.5 ? '#22d3ee' : '#8b5cf6';
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = Math.floor((width * height) / 18000);
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, width, height);
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(34, 211, 238, ${0.15 - dist / 1200})`;
+                        ctx.lineWidth = 0.6;
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+
+        // Typing Effect Component
+        const typingTextElem = document.getElementById('typing-text');
+        const roles = ["B.Tech CSE Student", "Full-Stack Web Developer", "Problem Solver", "Tech Enthusiast"];
+        let roleIdx = 0;
+        let charIdx = 0;
+        let isDeleting = false;
+
+        function typeEffect() {
+            const currentRole = roles[roleIdx];
+            if (isDeleting) {
+                typingTextElem.textContent = currentRole.substring(0, charIdx - 1);
+                charIdx--;
+            } else {
+                typingTextElem.textContent = currentRole.substring(0, charIdx + 1);
+                charIdx++;
+            }
+
+            let typeSpeed = isDeleting ? 40 : 80;
+
+            if (!isDeleting && charIdx === currentRole.length) {
+                typeSpeed = 1800; // Pause at end
+                isDeleting = true;
+            } else if (isDeleting && charIdx === 0) {
+                isDeleting = false;
+                roleIdx = (roleIdx + 1) % roles.length;
+                typeSpeed = 400;
+            }
+
+            setTimeout(typeEffect, typeSpeed);
+        }
+
+        typeEffect();
+
+        // Project Filter Functionality
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.project-filter-btn');
+
+            buttons.forEach(btn => {
+                btn.classList.remove('active', 'border-cyan-500/50', 'text-cyan-400');
+                btn.classList.add('border-slate-700', 'text-slate-400');
+            });
+
+            event.target.classList.add('active', 'border-cyan-500/50', 'text-cyan-400');
+            event.target.classList.remove('border-slate-700', 'text-slate-400');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Contact Form Toast Handle
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-32', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            e.target.reset();
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-32', 'opacity-0');
+            }, 4000);
+        }
+
+        // Resume Download Simulator
+        function downloadResumeSim() {
+            const toast = document.getElementById('toast');
+            toast.querySelector('h4').textContent = "Downloading Resume...";
+            toast.querySelector('p').textContent = "Rupanshi Priya's Resume file is preparing for download.";
+            toast.classList.remove('translate-y-32', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-32', 'opacity-0');
+            }, 3000);
+        }
+
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
